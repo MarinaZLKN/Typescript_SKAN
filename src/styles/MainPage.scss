@@ -1,0 +1,43 @@
+.upper-page-content{
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+
+
+  .info-box {
+    padding-top: 40px;
+    text-align: left;
+
+    .main-text{
+      font-size: 24px;
+      font-weight: 800;
+    }
+    .under-text{
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.btn {
+  width: 335px;
+  height: 59px;
+  background-color: #5970FF;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f0f0f0;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+
+}
+
+.btn:hover {
+    background-color: #7594f5;
+  }
