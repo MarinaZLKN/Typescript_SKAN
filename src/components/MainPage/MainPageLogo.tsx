@@ -4,7 +4,7 @@ interface MainPageLogoProps {
   alt: string;
 }
 
-const FooterLogo: React.FC<MainPageLogoProps> = ({ alt }) => {
+const MainPageLogo: React.FC<MainPageLogoProps> = ({ alt }) => {
   return (
     <div className="logo">
       <img src="/2398.png" alt={alt} />
@@ -12,4 +12,4 @@ const FooterLogo: React.FC<MainPageLogoProps> = ({ alt }) => {
   );
 };
 
-export default FooterLogo;
+export default MainPageLogo;

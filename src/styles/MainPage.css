@@ -1,7 +1,10 @@
+.main_page {
+  padding: 20px 40px;
+}
+
 .upper-page-content {
   display: flex;
   justify-content: space-between;
-  padding: 20px 40px;
   font-family: "Inter", sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -36,6 +39,30 @@
 
 .btn:hover {
   background-color: #7594f5;
+}
+
+.middle-page-content {
+  text-align: left;
+  padding: 20px 20px;
+}
+.middle-page-content .title {
+  font-family: "Inter", sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+}
+.middle-page-content .middle-page_center-pic {
+  padding-top: 30px;
+  padding-left: 50px;
+}
+
+.down-page-content {
+  text-align: left;
+  padding: 20px 40px;
+}
+.down-page-content .down-title {
+  font-family: "Inter", sans-serif;
+  font-size: 24px;
+  font-weight: 800;
 }
 
 /*# sourceMappingURL=MainPage.css.map */
