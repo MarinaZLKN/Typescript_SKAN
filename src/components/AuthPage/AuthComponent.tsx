@@ -24,6 +24,20 @@ function AuthComponent () {
                                     <div className="auth-restore-pass">
                                         <a href="#" id="text-auth">Forgot password?</a>
                                     </div>
+                                    <div className="auth-lower-side">
+                                        <p id="p">Log in via:</p>
+                                        <div className="auth-logos">
+                                            <div className="logo-1">
+                                                <img src="/logo-1.png"/>
+                                            </div>
+                                            <div className="logo-2">
+                                                <img src="/logo-2.png"/>
+                                            </div>
+                                            <div className="logo-3">
+                                                <img src="/logo-3.png"/>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </form>
                             </section>
                     </div>
@@ -36,14 +50,7 @@ function AuthComponent () {
                     </div>
                 </div>
             </div>
-            <div className="auth-lower-side">
-                <p id="p">Log in via:</p>
-                <div className="auth-logos">
-                    <div className="logo-1"></div>
-                    <div className="logo-2"></div>
-                    <div className="logo-3"></div>
-                </div>
-            </div>
+
         </div>
     )
 }

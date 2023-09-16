@@ -159,10 +159,12 @@
   line-height: 19px;
   letter-spacing: 0.02em;
   color: #949494;
+  text-align: left;
 }
 
 .auth-logos {
   cursor: pointer;
+  display: flex;
 }
 
 .logo-1 {
@@ -171,11 +173,13 @@
 }
 
 .logo-2 {
+  padding-left: 30px;
   width: 96px;
   height: 31px;
 }
 
 .logo-3 {
+  padding-left: 30px;
   width: 96px;
   height: 31px;
 }
@@ -207,6 +211,7 @@
 }
 
 .tab-title {
+  cursor: pointer;
   padding-top: 25px;
   border: none;
 }

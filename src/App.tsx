@@ -1,10 +1,11 @@
 import React from "react";
-import './styles/App.scss'
+import './styles/App.scss';
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import MainPage from "./components/MainPage/MainPage";
 import AuthPage from "./components/AuthPage/AuthPage";
-function App() {
+import {Route, Routes} from "react-router-dom";
+function App(){
 
     return (
         <div className="app">
@@ -12,8 +13,13 @@ function App() {
                 <Header/>
             </header>
             <main>
+                <Routes>
+                    <Route path="/" component={<MainPage/>} />
+                    <Route path="/auth" component={<AuthPage />} />
+
+                </Routes>
                 {/*<MainPage/>*/}
-                <AuthPage />
+                {/*<AuthPage />*/}
 
             </main>
             <footer>
