@@ -144,7 +144,7 @@ li {
     margin-left: -15px;
 }
 li::before {
-  //content: url("/icon-1.png");
+  content: url("../../../../public/icon-1.png");
   margin-inline-end: 1ch;
 }
 

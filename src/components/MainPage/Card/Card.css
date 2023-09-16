@@ -131,6 +131,7 @@ li {
 }
 
 li::before {
+  content: url("../../../../public/icon-1.png");
   margin-inline-end: 1ch;
 }
 
