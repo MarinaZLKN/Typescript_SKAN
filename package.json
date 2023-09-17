@@ -28,7 +28,6 @@
   },
   "dependencies": {
     "@types/react": "^18.2.21",
-    "@types/react-router-dom": "^5.3.3",
     "@types/react-slick": "^0.23.10",
     "@types/slick-carousel": "^1.6.37",
     "react-router-dom": "^6.16.0",

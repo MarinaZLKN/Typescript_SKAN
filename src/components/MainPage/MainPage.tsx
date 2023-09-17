@@ -22,7 +22,9 @@ interface CardData {
   li2: string;
 }
 
-function MainPage() {
+interface Props {}
+const MainPage: React.FC<Props> = (props) => {
+
   const cardData: CardData[] = [
     {
       id: 1,

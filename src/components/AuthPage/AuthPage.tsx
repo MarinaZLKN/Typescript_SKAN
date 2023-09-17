@@ -4,7 +4,8 @@ import AuthPicture from "./AuthPicture";
 import AuthComponent from "./AuthComponent";
 
 
-function AuthPage () {
+interface Props {}
+const AuthPage: React.FC<Props> = (props) => {
     return (
         <div className="auth-content">
             <div className="auth-left_side-content">

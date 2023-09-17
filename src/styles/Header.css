@@ -10,6 +10,9 @@
   justify-content: space-between;
   gap: 30px;
 }
+.header_menu .menu {
+  cursor: pointer;
+}
 
 .menu {
   font-family: "Inter", sans-serif;
