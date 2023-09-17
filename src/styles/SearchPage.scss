@@ -1,0 +1,33 @@
+.search-page-content{
+    padding: 20px 40px;
+}
+.search-wrapper{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.search-text{
+    width: 650px;
+}
+.search-title{
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 48px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-align: left;
+    color: #000000;
+}
+.search-under-text{
+
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.02em;
+    text-align: left;
+
+    color: #000000;
+}

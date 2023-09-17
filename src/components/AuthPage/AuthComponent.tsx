@@ -39,7 +39,7 @@ const inputStyles = {
         border: '2px solid red',
         boxSizing: 'border-box',
         background: '#FFFFFF',
-        boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.05)',
+        boxShadow: '0px 0px 10px rgba(255, 69, 69, 0.59)',
         borderRadius: '5px',
         width: '379px',
         height: '40px',

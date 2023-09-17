@@ -2,6 +2,7 @@ import React from 'react';
 import MainPageLogo from './MainPageLogo';
 import '../../styles/MainPage.css';
 import './Slider/Slider';
+import {Link} from "react-router-dom";
 import Carousel from './Slider/Slider';
 import MainPageCenterLogoLogo from './MainPageCenterLogo';
 import CardList from './Card/CardList';
@@ -84,7 +85,10 @@ const MainPage: React.FC<Props> = (props) => {
             <span>Comprehensive analysis of publications, receiving data in PDF format by email.</span>
           </div>
           <div className="btn_main-page">
-            <button className="btn">Request data</button>
+            <Link to="/search">
+              <button className="btn">Request data</button>
+            </Link>
+
           </div>
         </div>
         <div className="picture">
