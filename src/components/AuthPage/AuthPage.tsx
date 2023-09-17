@@ -2,6 +2,7 @@ import React from "react";
 import '../../styles/AuthPage.scss';
 import AuthPicture from "./AuthPicture";
 import AuthComponent from "./AuthComponent";
+import Lock from "./Lock";
 
 
 interface Props {}
@@ -17,6 +18,9 @@ const AuthPage: React.FC<Props> = (props) => {
                 </div>
             </div>
             <div className="auth-form">
+                {/*<div className="lock_pic">*/}
+                {/*    <Lock alt="lock pic"/>*/}
+                {/*</div>*/}
                 <AuthComponent/>
             </div>
         </div>

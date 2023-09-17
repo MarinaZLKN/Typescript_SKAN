@@ -38,6 +38,12 @@ const Carousel: React.FC = () => {
         <div className="carousel-item">
           <img src="/card1.png" alt="Slide 3" />
         </div>
+        <div className="carousel-item">
+          <img src="/card2.png" alt="Slide 2" />
+        </div>
+        <div className="carousel-item">
+          <img src="/card3.png" alt="Slide 3" />
+        </div>
       </Slider>
     </div>
   );

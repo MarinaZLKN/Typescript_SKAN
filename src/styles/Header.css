@@ -69,4 +69,120 @@
   margin: 0px 10px;
 }
 
+.side-menu-auth {
+  padding-left: 50px;
+  margin-right: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tariff-info-auth {
+  margin-right: 30px;
+  width: 150px;
+  height: 63px;
+  background: #D9D9D9;
+  opacity: 0.3;
+  border-radius: 5px;
+  display: inline-block;
+  text-align: left;
+}
+
+.tariff-used {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 12px;
+  opacity: 0.5;
+  margin-right: 20px;
+  margin-left: 15px;
+}
+
+.tariff-number {
+  margin-right: 10px;
+}
+
+.tariff-limit {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 12px;
+  margin-right: 20px;
+  margin-left: 15px;
+  color: #000000;
+  opacity: 0.5;
+}
+
+.account-info {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto;
+  align-items: center;
+}
+.account-info .text-container {
+  grid-column: 1;
+  grid-row: 1/3;
+}
+.account-info .account-name,
+.account-info .logout-btn {
+  grid-column: 1;
+}
+.account-info .account-pic {
+  grid-column: 2;
+  grid-row: 1/3;
+  align-self: center;
+  width: 32px;
+  height: 32px;
+}
+.account-info .account-pic .acc-pic {
+  border-radius: 15px;
+}
+
+.account-name {
+  margin-bottom: 1px;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  opacity: 0.7;
+}
+
+.logout-btn_style {
+  cursor: pointer;
+  border: none;
+  background-color: white;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 12px;
+  color: #000000;
+  opacity: 0.4;
+}
+
+.tariff-used-number {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.01em;
+  color: #050000;
+  margin-bottom: 1px;
+}
+
+.tariff-limit-number {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.01em;
+  color: #82c432;
+  margin-top: 1px;
+}
+
 /*# sourceMappingURL=Header.css.map */
