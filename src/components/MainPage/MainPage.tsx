@@ -85,7 +85,7 @@ const MainPage: React.FC<Props> = (props) => {
             <span>Comprehensive analysis of publications, receiving data in PDF format by email.</span>
           </div>
           <div className="btn_main-page">
-            <Link to="/search">
+            <Link to="/search" className="btn">
               <button className="btn">Request data</button>
             </Link>
 

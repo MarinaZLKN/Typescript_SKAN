@@ -69,7 +69,7 @@ const AuthComponent: React.FC = () => {
             if (user) {
                 setLoginValid(true);
                 setPasswordValid(true);
-                console.log('User found in local list, exiting.');
+                console.log('User found in local list,  now authenticating.');
             }
             const response = await axios.post(
                 "https://gateway.scan-interfax.ru/api/v1/account/login",
@@ -82,6 +82,8 @@ const AuthComponent: React.FC = () => {
                 }
             );
             const { accessToken, expire } = response.data;
+            console.log('accessToken', accessToken)
+            console.log('expire', expire)
             dispatch({ type: "LOGIN_SUCCESS", payload: { token: accessToken } });
             console.log("Authentication was successful.");
             navigate('/');

@@ -12,6 +12,7 @@
 }
 .header_menu .menu {
   cursor: pointer;
+  text-decoration: none !important;
 }
 
 .menu {

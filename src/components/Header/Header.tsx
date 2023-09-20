@@ -46,7 +46,7 @@ const Header: React.FC = () => {
                <Logo  alt="Company Logo" />
            </div>
             <div className="header_menu">
-                <Link to="/">
+                <Link to="/" className="menu">
                     <label className="menu"> Main page </label>
                 </Link>
                 <label className="menu"> Tariff </label>
@@ -57,7 +57,7 @@ const Header: React.FC = () => {
                     {accountInfo && (
                         <div className="tariff-info-auth">
                             <p className="tariff-used-number"><span className="tariff-used">Company used</span><span className="tariff-number">{accountInfo.eventFiltersInfo.usedCompanyCount}</span></p>
-                            <p className="tariff-limit-number"><span className="tariff-limit">Companu limit</span> <span className="tariff-number">{accountInfo.eventFiltersInfo.companyLimit}</span> </p>
+                            <p className="tariff-limit-number"><span className="tariff-limit">Company limit</span> <span className="tariff-number">{accountInfo.eventFiltersInfo.companyLimit}</span> </p>
                         </div>
                     )}
 

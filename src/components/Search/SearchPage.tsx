@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../styles/SearchPage.scss';
+import SearchComponent from "./SearchComponent";
 
 
 
@@ -17,7 +18,7 @@ const SearchPage: React.FC = () => {
                 <p>The more you fill in, the more accurate the search will be.</p>
               </div>
               <div className="search-component-wrapper">
-
+                  <SearchComponent />
               </div>
             </div>
             <div className="search-pictures">

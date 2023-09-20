@@ -1,0 +1,220 @@
+import React from 'react';
+import axios from "axios";
+import {useState} from "react";
+import {useSelector} from "react-redux";
+import '../../styles/SearchPage.scss';
+
+interface RootState {
+  token: string;
+}
+
+
+interface ValidationError {
+  code: number;
+  message: string;
+}
+
+function validateInn(inn: string | number, error: ValidationError): boolean {
+  let result = false;
+
+  if (typeof inn === 'number') {
+    inn = inn.toString();
+  } else if (typeof inn !== 'string') {
+    inn = '';
+  }
+
+  if (!inn.length) {
+    error.code = 1;
+    error.message = 'TIN in empty';
+  } else if (/[^0-9]/.test(inn)) {
+    error.code = 2;
+    error.message = 'TIN can only consist of numbers';
+  } else if (![10, 12].includes(inn.length)) {
+    error.code = 3;
+    error.message = 'TIN can only consist of 10 or 12 digits';
+  } else {
+    const checkDigit = (inn: string, coefficients: number[]): number => {
+      let n = 0;
+      for (let i = 0; i < coefficients.length; i++) {
+        n += coefficients[i] * Number(inn[i]);
+      }
+      return n % 11 % 10;
+    };
+
+    switch (inn.length) {
+      case 10:
+        const n10 = checkDigit(inn, [2, 4, 10, 3, 5, 9, 4, 6, 8]);
+        if (n10 === Number(inn[9])) {
+          result = true;
+        }
+        break;
+
+      case 12:
+        const n11 = checkDigit(inn, [7, 2, 4, 10, 3, 5, 9, 4, 6, 8]);
+        const n12 = checkDigit(inn, [3, 7, 2, 4, 10, 3, 5, 9, 4, 6, 8]);
+        if (n11 === Number(inn[10]) && n12 === Number(inn[11])) {
+          result = true;
+        }
+        break;
+    }
+
+    if (!result) {
+      error.code = 4;
+      error.message = 'Incorrect check number';
+    }
+  }
+
+  return result;
+}
+
+const error: ValidationError = { code: 0, message: '' };
+const isValid = validateInn('7710137066', error);
+if (!isValid) {
+  console.log(`Validation failed: ${error.message}`);
+}
+
+const SearchComponent: React.FC = () => {
+  const [inn, setInn] = useState<string>('');
+  const [dateRange, setDateRange] = useState<{ start: string; end: string }>({ start: '', end: '' });
+  const [limit, setLimit] = useState<string>('1000');
+  const [tonality, setTonality] = useState<string>('Any');
+
+  const token = useSelector((state: RootState) => state.token);
+
+  const handleSearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const error: ValidationError = { code: 0, message: '' };
+    const validationResult = validateInn(inn, error);
+
+    if (validationResult !== true) {
+      alert(`Validation failed: ${error.message}`);
+      return;
+    }
+
+    const payload = {
+      issueDateInterval: {
+        startDate: dateRange.start,
+        endDate: dateRange.end
+      },
+      searchContext: {
+        targetSearchEntitiesContext: {
+          targetSearchEntities: [
+            {
+              type: 'company',
+              inn: inn,
+              maxFullness: true,
+              inBusinessNews: null
+            }
+          ],
+          onlyMainRole: true,
+          tonality: tonality,
+          onlyWithRiskFactors: false,
+          riskFactors: {
+            and: [],
+            or: [],
+            not: []
+          },
+          themes: {
+            and: [],
+            or: [],
+            not: []
+          }
+        },
+        themesFilter: {
+          and: [],
+          or: [],
+          not: []
+        }
+      },
+      searchArea: {
+        includedSources: [],
+        excludedSources: [],
+        includedSourceGroups: [],
+        excludedSourceGroups: []
+      },
+      attributeFilters: {
+        excludeTechNews: true,
+        excludeAnnouncements: true,
+        excludeDigests: true
+      },
+      similarMode: 'duplicates',
+      limit: parseInt(limit, 10),
+      sortType: 'sourceInfluence',
+      sortDirectionType: 'desc',
+      intervalType: 'month',
+      histogramTypes: ['totalDocuments', 'riskFactors']
+    };
+
+    try {
+      const response = await axios.post('https://gateway.scan-interfax.ru/api/v1/objectsearch/histograms',
+          payload,
+           {
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+          );
+      console.log('Response: ',response.data);
+    } catch (error) {
+      console.error(`Error occurred: ${error}`);
+    }
+  };
+    return (
+        <form className="search-component-content" onSubmit={handleSearch}>
+            <div className="search-component-inputs">
+                <div className="search-input-1">
+                <p id="checkbox-p">Company TINumber<sup>*</sup> </p>
+                <input id="input_1"
+                       type="text"
+                       name="inn"
+                       placeholder="10 digits"
+                       value={inn}
+                       onChange={(e) => setInn(e.target.value)}
+                />
+            </div>
+                <div className="search-input-list"> <p id="checkbox-p">Tonality</p> </div>
+                <input id="input_1" type="text" list="list" value={tonality} onChange={(e) => setTonality(e.target.value)}/>
+                    <datalist id="list" placeholder="Any">
+                        <option value="Any"/>
+                        <option value="Positive"/>
+                        <option value="Negative"/>
+                    </datalist>
+                <div className="search-input-3"><p id="checkbox-p">Number of documents to be issued<sup>*</sup></p></div>
+                <input id="input_1" type="text" placeholder="from 1 to 1000" min="1" max="1000" value={limit} onChange={(e) => setLimit(e.target.value)}/>
+                <div className="search-input-4"> <p id="checkbox-p">Search range<sup>*</sup></p> </div>
+                <form id="search-form">
+                    <div className="date-range">
+                        <input type="date"
+                               id="start-date"
+                               name="start-date"
+                               onChange={(e) => setDateRange({...dateRange, start: e.target.value})} />
+                        <input type="date"
+                               id="end-date"
+                               name="end-date"
+                               onChange={(e) => setDateRange({...dateRange, end: e.target.value})}/>
+                    </div>
+                </form>
+            </div>
+            <div className="search-checkbox-button">
+                <div className="search-checkbox">
+                <p id="checkbox-p"><input type="checkbox" name="checkbox" value=""/> Sign of maximum completeness</p>
+                <p id="checkbox-p"><input type="checkbox" name="checkbox" value=""/> Mentions in a business context</p>
+                <p id="checkbox-p"><input type="checkbox" name="checkbox" value=""/> Main role in the publication</p>
+                <p id="checkbox-p"><input type="checkbox" name="checkbox" value=""/> Publishing only with risk factors</p>
+                <p id="checkbox-p"><input type="checkbox" name="checkbox" value=""/> Include technical market news</p>
+                <p id="checkbox-p"><input type="checkbox" name="checkbox" value=""/> Include announcements and calendars</p>
+                <p id="checkbox-p"><input type="checkbox" name="checkbox" value=""/> Include news bulletins</p>
+            </div>
+                <div className="search-down-part">
+                    <button type="submit" className="search-button">Search</button>
+                    <p id="bottom-p"> <sup>*</sup>Required fields</p>
+                </div>
+            </div>
+
+        </form>
+    )
+}
+
+export default SearchComponent;
