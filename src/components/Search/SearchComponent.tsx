@@ -74,93 +74,117 @@ if (!isValid) {
 }
 
 const SearchComponent: React.FC = () => {
-  const [inn, setInn] = useState<string>('');
-  const [dateRange, setDateRange] = useState<{ start: string; end: string }>({ start: '', end: '' });
-  const [limit, setLimit] = useState<string>('1000');
-  const [tonality, setTonality] = useState<string>('Any');
+    //for searching
+    const [inn, setInn] = useState<string>('');
+    const [dateRange, setDateRange] = useState<{ start: string; end: string }>({ start: '', end: '' });
+    const [limit, setLimit] = useState<string>('1000');
+    const [tonality, setTonality] = useState<string>('Any');
 
-  const token = useSelector((state: RootState) => state.token);
+    const token = useSelector((state: RootState) => state.token);
 
-  const handleSearch = async (e: React.FormEvent) => {
-    e.preventDefault();
+    // for validation
+    const [limitError, setLimitError] = useState<string | null>(null);
+    const [dateError, setDateError] = useState<string | null>(null);
 
-    const error: ValidationError = { code: 0, message: '' };
-    const validationResult = validateInn(inn, error);
 
-    if (validationResult !== true) {
-      alert(`Validation failed: ${error.message}`);
-      return;
-    }
+    const handleSearch = async (e: React.FormEvent) => {
+        e.preventDefault();
+        const error: ValidationError = { code: 0, message: '' };
+        const validationResult = validateInn(inn, error);
 
-    const payload = {
-      issueDateInterval: {
-        startDate: dateRange.start,
-        endDate: dateRange.end
-      },
-      searchContext: {
-        targetSearchEntitiesContext: {
-          targetSearchEntities: [
-            {
-              type: 'company',
-              inn: inn,
-              maxFullness: true,
-              inBusinessNews: null
-            }
-          ],
-          onlyMainRole: true,
-          tonality: tonality,
-          onlyWithRiskFactors: false,
-          riskFactors: {
-            and: [],
-            or: [],
-            not: []
-          },
-          themes: {
-            and: [],
-            or: [],
-            not: []
-          }
-        },
-        themesFilter: {
-          and: [],
-          or: [],
-          not: []
+        const limitNumber = parseInt(limit, 10);
+            if (isNaN(limitNumber) || limitNumber < 1 || limitNumber > 1000) {
+              setLimitError('Limit must be a number between 1 and 1000.');
+              return;
+            } else {
+              setLimitError(null);
         }
-      },
-      searchArea: {
-        includedSources: [],
-        excludedSources: [],
-        includedSourceGroups: [],
-        excludedSourceGroups: []
-      },
-      attributeFilters: {
-        excludeTechNews: true,
-        excludeAnnouncements: true,
-        excludeDigests: true
-      },
-      similarMode: 'duplicates',
-      limit: parseInt(limit, 10),
-      sortType: 'sourceInfluence',
-      sortDirectionType: 'desc',
-      intervalType: 'month',
-      histogramTypes: ['totalDocuments', 'riskFactors']
-    };
 
-    try {
-      const response = await axios.post('https://gateway.scan-interfax.ru/api/v1/objectsearch/histograms',
-          payload,
-           {
-                headers: {
-                  'Content-Type': 'application/json',
-                  Authorization: `Bearer ${token}`,
-                },
+        // Validate dates
+        const startDate = new Date(dateRange.start);
+        const endDate = new Date(dateRange.end);
+        if (startDate > endDate) {
+          setDateError('End date cannot be earlier than start date.');
+          return;
+        }
+
+        setDateError(null);
+
+        if (validationResult !== true) {
+            alert(`Validation failed: ${error.message}`);
+            return;
+        }
+
+        const payload = {
+          issueDateInterval: {
+            startDate: dateRange.start,
+            endDate: dateRange.end
+          },
+          searchContext: {
+            targetSearchEntitiesContext: {
+              targetSearchEntities: [
+                {
+                  type: 'company',
+                  inn: inn,
+                  maxFullness: true,
+                  inBusinessNews: null
+                }
+              ],
+              onlyMainRole: true,
+              tonality: tonality,
+              onlyWithRiskFactors: false,
+              riskFactors: {
+                and: [],
+                or: [],
+                not: []
+              },
+              themes: {
+                and: [],
+                or: [],
+                not: []
               }
-          );
-      console.log('Response: ',response.data);
-    } catch (error) {
-      console.error(`Error occurred: ${error}`);
-    }
-  };
+            },
+            themesFilter: {
+              and: [],
+              or: [],
+              not: []
+            }
+          },
+          searchArea: {
+            includedSources: [],
+            excludedSources: [],
+            includedSourceGroups: [],
+            excludedSourceGroups: []
+          },
+          attributeFilters: {
+            excludeTechNews: true,
+            excludeAnnouncements: true,
+            excludeDigests: true
+          },
+          similarMode: 'duplicates',
+          limit: parseInt(limit, 10),
+          sortType: 'sourceInfluence',
+          sortDirectionType: 'desc',
+          intervalType: 'month',
+          histogramTypes: ['totalDocuments', 'riskFactors']
+        };
+
+        try {
+          const response = await axios.post('https://gateway.scan-interfax.ru/api/v1/objectsearch/histograms',
+              payload,
+               {
+                    headers: {
+                      'Content-Type': 'application/json',
+                      Authorization: `Bearer ${token}`,
+                    },
+                  }
+              );
+          console.log('Response: ',response.data);
+        } catch (error) {
+          console.error(`Error occurred: ${error}`);
+        }
+      };
+
     return (
         <form className="search-component-content" onSubmit={handleSearch}>
             <div className="search-component-inputs">
@@ -182,19 +206,41 @@ const SearchComponent: React.FC = () => {
                         <option value="Negative"/>
                     </datalist>
                 <div className="search-input-3"><p id="checkbox-p">Number of documents to be issued<sup>*</sup></p></div>
-                <input id="input_1" type="text" placeholder="from 1 to 1000" min="1" max="1000" value={limit} onChange={(e) => setLimit(e.target.value)}/>
+                <input id="input_1"
+                       type="text"
+                       placeholder="from 1 to 1000"
+                       className={limitError ? 'input-error' : ''}
+                       min="1" max="1000"
+                       value={limit}
+                       onChange={(e) => {
+                           setLimit(e.target.value);
+                           setLimitError(null);
+                       }}
+                />
+                {limitError && <p className="error-message">{limitError}</p>}
                 <div className="search-input-4"> <p id="checkbox-p">Search range<sup>*</sup></p> </div>
                 <form id="search-form">
                     <div className="date-range">
                         <input type="date"
                                id="start-date"
                                name="start-date"
-                               onChange={(e) => setDateRange({...dateRange, start: e.target.value})} />
+                               className={dateError ? 'input-error' : ''}
+                               onChange={(e) => {
+                                   setDateRange({...dateRange, start: e.target.value});
+                                   setDateError(null);
+                               }}
+                        />
                         <input type="date"
                                id="end-date"
                                name="end-date"
-                               onChange={(e) => setDateRange({...dateRange, end: e.target.value})}/>
+                               className={dateError ? 'input-error' : ''}
+                               onChange={(e) => {
+                                   setDateRange({...dateRange, end: e.target.value});
+                                   setDateError(null);
+                               }}
+                        />
                     </div>
+                    {dateError && <p className="error-message">{dateError}</p>}
                 </form>
             </div>
             <div className="search-checkbox-button">
