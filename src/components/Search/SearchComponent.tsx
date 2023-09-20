@@ -85,35 +85,46 @@ const SearchComponent: React.FC = () => {
     // for validation
     const [limitError, setLimitError] = useState<string | null>(null);
     const [dateError, setDateError] = useState<string | null>(null);
+    const [innError, setInnError] = useState<string | null>(null);
 
 
     const handleSearch = async (e: React.FormEvent) => {
         e.preventDefault();
+        let allValid = true;
+
         const error: ValidationError = { code: 0, message: '' };
         const validationResult = validateInn(inn, error);
 
+        if (!validationResult) {
+            setInnError(`Validation failed: ${error.message}`);
+            allValid = false;
+          } else {
+            setInnError(null);
+        }
+
+        // validate limit
         const limitNumber = parseInt(limit, 10);
             if (isNaN(limitNumber) || limitNumber < 1 || limitNumber > 1000) {
               setLimitError('Limit must be a number between 1 and 1000.');
-              return;
+              allValid = false;
             } else {
               setLimitError(null);
-        }
+            }
 
         // Validate dates
         const startDate = new Date(dateRange.start);
         const endDate = new Date(dateRange.end);
         if (startDate > endDate) {
           setDateError('End date cannot be earlier than start date.');
-          return;
+          allValid = false;
+        } else{
+            setDateError(null);
         }
 
-        setDateError(null);
-
-        if (validationResult !== true) {
-            alert(`Validation failed: ${error.message}`);
+        if (!allValid) {
             return;
         }
+
 
         const payload = {
           issueDateInterval: {
@@ -189,14 +200,19 @@ const SearchComponent: React.FC = () => {
         <form className="search-component-content" onSubmit={handleSearch}>
             <div className="search-component-inputs">
                 <div className="search-input-1">
-                <p id="checkbox-p">Company TINumber<sup>*</sup> </p>
+                <p id="checkbox-p">Company TIN<sup style={{color: innError? 'red' : ''}}>*</sup> </p>
                 <input id="input_1"
                        type="text"
                        name="inn"
                        placeholder="10 digits"
+                       className={innError ? 'input-error' : ''}
                        value={inn}
-                       onChange={(e) => setInn(e.target.value)}
+                       onChange={(e) => {
+                             setInn(e.target.value);
+                             setInnError(null);
+                       }}
                 />
+                    {innError && <p className="error-message">{innError}</p>}
             </div>
                 <div className="search-input-list"> <p id="checkbox-p">Tonality</p> </div>
                 <input id="input_1" type="text" list="list" value={tonality} onChange={(e) => setTonality(e.target.value)}/>
@@ -205,7 +221,7 @@ const SearchComponent: React.FC = () => {
                         <option value="Positive"/>
                         <option value="Negative"/>
                     </datalist>
-                <div className="search-input-3"><p id="checkbox-p">Number of documents to be issued<sup>*</sup></p></div>
+                <div className="search-input-3"><p id="checkbox-p">Number of documents to be issued<sup style={{color: limitError? 'red' : ''}}>*</sup></p></div>
                 <input id="input_1"
                        type="text"
                        placeholder="from 1 to 1000"
@@ -218,7 +234,7 @@ const SearchComponent: React.FC = () => {
                        }}
                 />
                 {limitError && <p className="error-message">{limitError}</p>}
-                <div className="search-input-4"> <p id="checkbox-p">Search range<sup>*</sup></p> </div>
+                <div className="search-input-4"> <p id="checkbox-p">Search range<sup style={{color: dateError? 'red' : ''}}>*</sup></p> </div>
                 <form id="search-form">
                     <div className="date-range">
                         <input type="date"
@@ -239,8 +255,8 @@ const SearchComponent: React.FC = () => {
                                    setDateError(null);
                                }}
                         />
+                        {dateError && <p className="error-message">{dateError}</p>}
                     </div>
-                    {dateError && <p className="error-message">{dateError}</p>}
                 </form>
             </div>
             <div className="search-checkbox-button">
