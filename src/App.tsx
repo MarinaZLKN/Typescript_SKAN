@@ -6,6 +6,7 @@ import MainPage from "./components/MainPage/MainPage";
 import AuthPage from "./components/AuthPage/AuthPage";
 import { Routes, Route } from "react-router-dom";
 import SearchPage from "./components/Search/SearchPage";
+import ResultPage from "./components/Result/ResultPage";
 
 
 function App(){
@@ -21,6 +22,7 @@ function App(){
                     <Route path="/" element={<MainPage/>} />
                     <Route path="/auth" element={<AuthPage />} />
                     <Route path="/search" element={<SearchPage />} />
+                    <Route path="/resultpage" element={<ResultPage />} />
                 </Routes>
 
             </main>

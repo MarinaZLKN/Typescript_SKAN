@@ -2,6 +2,7 @@ import React from 'react';
 import axios from "axios";
 import {useState} from "react";
 import {useSelector} from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import '../../styles/SearchPage.scss';
 
 interface RootState {
@@ -81,6 +82,7 @@ const SearchComponent: React.FC = () => {
     const [tonality, setTonality] = useState<string>('Any');
 
     const token = useSelector((state: RootState) => state.token);
+    const navigate = useNavigate();
 
     // for validation
     const [limitError, setLimitError] = useState<string | null>(null);
@@ -181,16 +183,16 @@ const SearchComponent: React.FC = () => {
         };
 
         try {
-          const response = await axios.post('https://gateway.scan-interfax.ru/api/v1/objectsearch/histograms',
-              payload,
+            const response = await axios.post('https://gateway.scan-interfax.ru/api/v1/objectsearch/histograms',
+                payload,
                {
                     headers: {
                       'Content-Type': 'application/json',
                       Authorization: `Bearer ${token}`,
                     },
-                  }
-              );
-          console.log('Response: ',response.data);
+               });
+            console.log('Response: ',response.data);
+            navigate('/resultpage', { state: { responseData: response.data } });
         } catch (error) {
           console.error(`Error occurred: ${error}`);
         }
