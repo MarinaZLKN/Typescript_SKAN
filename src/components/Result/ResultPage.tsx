@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import '../../styles/ResultPage.scss';
+import StatisticComponent from "./StatisticComponent";
 
 
 const ResultPage: React.FC = () => {
@@ -25,7 +26,7 @@ const ResultPage: React.FC = () => {
                     </div>
                 </div>
             </div>
-            //TODO pass the data here via StatisticComponent?
+            <StatisticComponent data={responseData} />
         </>
     )
 }

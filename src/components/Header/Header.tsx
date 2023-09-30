@@ -6,6 +6,7 @@ import Logo from './Logo';
 import {Link} from "react-router-dom";
 import LogoutButton from "./LogoutButton";
 import '../../styles/Header.scss';
+// import { RootState} from "../../types";
 
 interface AccountInfo {
   eventFiltersInfo: {

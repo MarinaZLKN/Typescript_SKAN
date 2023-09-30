@@ -32,4 +32,9 @@
   color: #000000;
 }
 
+.stat-component {
+  text-align: left;
+  padding: 20px 40px;
+}
+
 /*# sourceMappingURL=ResultPage.css.map */
