@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import '../../styles/DataSlider.css';
 
 export interface DataElement {
   histogramType: string;
@@ -49,7 +50,7 @@ const DataSlider: React.FC<DataSliderProps> = ({ data }) => {
   }
 
   return (
-    <>
+      <div className="slider-container">
             <div className="slider-btn_left" onClick={e => handleSteps(e, -1)}>&lt;</div>
             <div className="data-slider_box">
                 <div className="data-slider_left-part">
@@ -61,7 +62,7 @@ const DataSlider: React.FC<DataSliderProps> = ({ data }) => {
                 </div>
                 <div className="data-slider_right-part">
                     <div className="table">
-                      <div className="table-tr">
+                        <div className="table-tr">
                           {dates.map(elem => {
                               return(
                                   <div className="table-value">{elem}</div>
@@ -82,12 +83,13 @@ const DataSlider: React.FC<DataSliderProps> = ({ data }) => {
                                   )
                               })}
                           </div>
+                      <div className="separator_stat"></div>
                     </div>
                 </div>
-                <div className="slider-btn_right" onClick={e => handleSteps(e, +1)}>&gt;</div>
-                </div>
+            </div>
+            <div className="slider-btn_right" onClick={e => handleSteps(e, +1)}>&gt;</div>
 
-        </>
+      </div>
 
   );
 }

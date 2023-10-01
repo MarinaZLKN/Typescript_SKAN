@@ -1,14 +1,17 @@
 .result-content{
     padding: 20px 40px;
+    .result-static {
+        display: flex;
+    }
+    .result-static_left{
+        text-align: left;
+        flex: 0 1 60%;
+    }
+    .statistics_copm{
+        display: block;
+    }
 }
 
-.result-static {
-    display: flex;
-}
-.result-static_left{
-    text-align: left;
-    flex: 0 1 60%;
-}
 .result-static_main-title{
     font-family: 'Inter', sans-serif;
     font-style: normal;
@@ -33,4 +36,9 @@
 .stat-component {
     text-align: left;
     padding: 20px 40px;
+
+    .data_slider{
+
+    }
+
 }

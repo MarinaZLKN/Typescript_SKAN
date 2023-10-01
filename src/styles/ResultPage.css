@@ -1,14 +1,15 @@
 .result-content {
   padding: 20px 40px;
 }
-
-.result-static {
+.result-content .result-static {
   display: flex;
 }
-
-.result-static_left {
+.result-content .result-static_left {
   text-align: left;
   flex: 0 1 60%;
+}
+.result-content .statistics_copm {
+  display: block;
 }
 
 .result-static_main-title {

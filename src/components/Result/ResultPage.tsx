@@ -12,7 +12,6 @@ const ResultPage: React.FC = () => {
 
 
     return(
-        <>
             <div className="result-content">
                 <div className="result-static">
                     <div className="result-static_left">
@@ -25,9 +24,11 @@ const ResultPage: React.FC = () => {
                         </div>
                     </div>
                 </div>
+                <div className="statistics_copm">
+                    <StatisticComponent data={responseData} />
+                </div>
             </div>
-            <StatisticComponent data={responseData} />
-        </>
+
     )
 }
 

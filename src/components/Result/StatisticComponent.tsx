@@ -1,10 +1,10 @@
 import React from 'react';
 import '../../styles/ResultPage.scss';
 import DataSlider from "./DataSlider";
-import { DataElement } from './DataSlider'
 
 interface DataItem {
-    data: any[]; //TODO replace 'any' with a more specific type !!!!!!!!!!!!!!
+    histogramType: string;
+    data: Array<{ date: string; value: number }>;
 }
 
 
@@ -29,7 +29,10 @@ const StatisticComponent: React.FC<StatisticComponentProps> = ({ data }) => {
         <div className="stat-component">
             <div className="result-static_main-title">Summary</div>
             <div className="result-static_span"> {data.data[0].data.length} options found</div>
-            {/*<DataSlider data={data} />*/}
+            <div className="data_slider">
+                {data && data.data && <DataSlider data={{ data: data.data }} />}
+            </div>
+
         </div>
     )
 }
