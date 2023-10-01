@@ -192,6 +192,29 @@ const SearchComponent: React.FC = () => {
                     },
                });
             console.log('Response: ',response.data);
+             const objectSearchResponse = await axios.post('https://gateway.scan-interfax.ru/api/v1/objectsearch',
+                payload,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            const documentIds = objectSearchResponse.data; // so here must be IDs
+            console.log('documentIds :',documentIds)
+            // request for the documents
+            const documentsResponse = await axios.post('https://gateway.scan-interfax.ru/api/v1/documents',
+                { ids: documentIds },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            const documentsData = documentsResponse.data;
+            console.log('documentsData :',documentsData)
             navigate('/resultpage', { state: { responseData: response.data } });
         } catch (error) {
           console.error(`Error occurred: ${error}`);
