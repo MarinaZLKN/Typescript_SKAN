@@ -201,7 +201,7 @@ const SearchComponent: React.FC = () => {
                     },
                 }
             );
-            const documentIds = objectSearchResponse.data; // so here must be IDs
+            const documentIds = objectSearchResponse.data.items.map((item: { encodedId: string }) => item.encodedId);// so here must be IDs
             console.log('documentIds :',documentIds)
             // request for the documents
             const documentsResponse = await axios.post('https://gateway.scan-interfax.ru/api/v1/documents',
@@ -211,8 +211,7 @@ const SearchComponent: React.FC = () => {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${token}`,
                     },
-                }
-            );
+                });
             const documentsData = documentsResponse.data;
             console.log('documentsData :',documentsData)
             navigate('/resultpage', { state: { responseData: response.data } });
