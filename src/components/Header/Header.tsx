@@ -6,6 +6,8 @@ import Logo from './Logo';
 import {Link} from "react-router-dom";
 import LogoutButton from "./LogoutButton";
 import '../../styles/Header.scss';
+import {AuthState} from "../../reducers/reduser";
+import {SearchDataState} from "../../reducers/searchReducer";
 // import { RootState} from "../../types";
 
 interface AccountInfo {
@@ -15,14 +17,14 @@ interface AccountInfo {
   };
 }
 
-interface RootState {
-  isAuthenticated: boolean;
-  token: string | null;
-  loading: boolean;
+export interface RootState {
+  auth: AuthState;
+  searchData: SearchDataState;
 }
+
 const Header: React.FC = () => {
-  const isAuthenticated = useSelector((state: RootState) => state.isAuthenticated);
-  const token = useSelector((state: RootState) => state.token);
+  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
+  const token = useSelector((state: RootState) => state.auth.token);
   const [accountInfo, setAccountInfo] = useState<AccountInfo | null>(null);
 
   useEffect(() => {

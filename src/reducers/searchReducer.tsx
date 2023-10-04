@@ -3,9 +3,13 @@ interface DataItem {
     name: string;
 
 }
+type DocumentItem = {
+    id: string;
+}
 
 interface SearchDataState {
     data: DataItem[] | null;
+    documentData: DocumentItem[] | null;
     loading: boolean;
     error: null | string;
 }
@@ -19,11 +23,22 @@ interface FetchDataFailAction {
     type: 'FETCH_DATA_FAIL';
     payload: string;
 }
+interface FetchDocumentsSuccessAction {
+    type: 'FETCH_DOCUMENTS_SUCCESS';
+    payload: DocumentItem[];
+}
 
-type SearchActionTypes = FetchDataSuccessAction | FetchDataFailAction;
+interface FetchDocumentsFailAction {
+    type: 'FETCH_DOCUMENTS_FAIL';
+    payload: string;
+}
+
+
+export type SearchActionTypes = FetchDataSuccessAction | FetchDataFailAction | FetchDocumentsSuccessAction | FetchDocumentsFailAction;
 
 const initialState: SearchDataState = {
     data: null,
+    documentData: null,
     loading: false,
     error: null,
 };
@@ -43,7 +58,21 @@ export const searchDataReducer = (state: SearchDataState = initialState, action:
                 data: null,
                 loading: false,
                 error: action.payload,
-            }
+            };
+        case "FETCH_DOCUMENTS_SUCCESS":
+            return {
+                ...state,
+                documentData: action.payload,
+                loading: false,
+                error: null,
+            };
+        case "FETCH_DOCUMENTS_FAIL":
+            return {
+                ...state,
+                documentData: null,
+                loading: false,
+                error: action.payload,
+            };
         default:
             return state;
     }

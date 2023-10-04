@@ -3,10 +3,13 @@ import axios from "axios";
 import {useState} from "react";
 import {useSelector} from "react-redux";
 import { useNavigate } from 'react-router-dom';
+import {AuthState} from "../../reducers/reduser";
+import {SearchDataState} from "../../reducers/searchReducer";
 import '../../styles/SearchPage.scss';
 
-interface RootState {
-  token: string;
+export interface RootState {
+  auth: AuthState;
+  searchData: SearchDataState;
 }
 
 
@@ -81,7 +84,7 @@ const SearchComponent: React.FC = () => {
     const [limit, setLimit] = useState<string>('1000');
     const [tonality, setTonality] = useState<string>('Any');
 
-    const token = useSelector((state: RootState) => state.token);
+    const token = useSelector((state: RootState) => state.auth.token);
     const navigate = useNavigate();
 
     // for validation
@@ -175,7 +178,7 @@ const SearchComponent: React.FC = () => {
             excludeDigests: true
           },
           similarMode: 'duplicates',
-          limit: parseInt(limit, 10),
+          limit: parseInt(limit, 1000),
           sortType: 'sourceInfluence',
           sortDirectionType: 'desc',
           intervalType: 'month',
@@ -203,18 +206,29 @@ const SearchComponent: React.FC = () => {
             );
             const documentIds = objectSearchResponse.data.items.map((item: { encodedId: string }) => item.encodedId);// so here must be IDs
             console.log('documentIds :',documentIds)
-            // request for the documents
-            const documentsResponse = await axios.post('https://gateway.scan-interfax.ru/api/v1/documents',
-                { ids: documentIds },
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
-            const documentsData = documentsResponse.data;
-            console.log('documentsData :',documentsData)
-            navigate('/resultpage', { state: { responseData: response.data } });
+            // request for the documents with the limit by 100
+            const limitSize = 100;
+                for (let i = 0; i < documentIds.length; i += limitSize) {
+                    const hundredIds = documentIds.slice(i, i + limitSize);
+
+                    console.log('ID slices:', hundredIds);
+
+                    try {
+                        const documentsResponse = await axios.post('https://gateway.scan-interfax.ru/api/v1/documents',
+                            { ids: hundredIds },
+                            {
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    Authorization: `Bearer ${token}`,
+                                },
+                            }
+                        );
+                        console.log('Response for the IDs:', documentsResponse.data);
+                    } catch (error) {
+                        console.error('Error response:', response.data);
+                    }
+                }
+            navigate('/resultpage', { state: {  responseData: response.data } });
         } catch (error) {
           console.error(`Error occurred: ${error}`);
         }
@@ -304,3 +318,4 @@ const SearchComponent: React.FC = () => {
 }
 
 export default SearchComponent;
+
