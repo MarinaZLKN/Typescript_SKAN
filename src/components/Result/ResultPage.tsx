@@ -4,12 +4,13 @@ import '../../styles/ResultPage.scss';
 import StatisticComponent from "./StatisticComponent";
 
 
+
+
 const ResultPage: React.FC = () => {
     const location = useLocation();
     const responseData = location.state?.responseData;
 
     console.log('Passed data to resultPage: ', responseData);
-
 
     return(
             <div className="result-content">

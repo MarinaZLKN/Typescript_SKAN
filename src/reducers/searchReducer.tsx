@@ -10,6 +10,7 @@ type DocumentItem = {
 interface SearchDataState {
     data: DataItem[] | null;
     documentData: DocumentItem[] | null;
+    documents: Document[] | null;
     loading: boolean;
     error: null | string;
 }
@@ -25,12 +26,112 @@ interface FetchDataFailAction {
 }
 interface FetchDocumentsSuccessAction {
     type: 'FETCH_DOCUMENTS_SUCCESS';
-    payload: DocumentItem[];
+    payload: Document[];
 }
 
 interface FetchDocumentsFailAction {
     type: 'FETCH_DOCUMENTS_FAIL';
     payload: string;
+}
+
+interface Document {
+    ok: OkObject;
+}
+
+interface OkObject {
+    schemaVersion: string;
+    id: string;
+    version: number;
+    issueDate: string;
+    url: string;
+    source: Source;
+    dedupClusterId: string;
+    title: TextMarkup;
+    content: TextMarkup;
+    entities: Entities;
+    attributes: Attributes;
+    language: string;
+}
+
+interface Source {
+    id: number;
+    groupId: number;
+    name: string;
+    categoryId: number;
+    levelId: number;
+}
+
+interface TextMarkup {
+    text?: string;
+    markup: string;
+}
+
+interface Entities {
+    companies: Company[];
+    people: any[];
+    themes: Theme[];
+    locations: Location[];
+}
+
+interface Company {
+    suggestedCompanies: SuggestedCompany[];
+    resolveInfo: ResolveInfo;
+    tags: string[];
+    isSpeechAuthor: boolean;
+    localId: number;
+    name: string;
+    entityId: number;
+    isMainRole: boolean;
+}
+
+interface SuggestedCompany {
+    sparkId: number;
+    inn: string;
+    ogrn: string;
+    searchPrecision: string;
+}
+
+interface ResolveInfo {
+    resolveApproaches: string[];
+}
+
+interface Theme {
+    localId: number;
+    name: string;
+    entityId: number;
+    tonality: string;
+    participant?: Participant;
+}
+
+interface Participant {
+    localId: number;
+    type: string;
+}
+
+interface Location {
+    code: Code;
+    localId: number;
+    name: string;
+    isMainRole: boolean;
+}
+
+interface Code {
+    countryCode: string;
+    regionCode: string;
+}
+
+interface Attributes {
+    isTechNews: boolean;
+    isAnnouncement: boolean;
+    isDigest: boolean;
+    influence: number;
+    wordCount: number;
+    coverage: Coverage;
+}
+
+interface Coverage {
+    value: number;
+    state: string;
 }
 
 
@@ -39,6 +140,7 @@ export type SearchActionTypes = FetchDataSuccessAction | FetchDataFailAction | F
 const initialState: SearchDataState = {
     data: null,
     documentData: null,
+    documents: null,
     loading: false,
     error: null,
 };
@@ -62,7 +164,7 @@ export const searchDataReducer = (state: SearchDataState = initialState, action:
         case "FETCH_DOCUMENTS_SUCCESS":
             return {
                 ...state,
-                documentData: action.payload,
+                documentData: action.payload.map(doc => ({ id: doc.ok.id })),
                 loading: false,
                 error: null,
             };

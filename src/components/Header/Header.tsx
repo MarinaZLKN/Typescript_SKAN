@@ -8,7 +8,6 @@ import LogoutButton from "./LogoutButton";
 import '../../styles/Header.scss';
 import {AuthState} from "../../reducers/reduser";
 import {SearchDataState} from "../../reducers/searchReducer";
-// import { RootState} from "../../types";
 
 interface AccountInfo {
   eventFiltersInfo: {
@@ -16,7 +15,6 @@ interface AccountInfo {
     companyLimit: number
   };
 }
-
 export interface RootState {
   auth: AuthState;
   searchData: SearchDataState;

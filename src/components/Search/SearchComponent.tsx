@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from "axios";
 import {useState} from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import {AuthState} from "../../reducers/reduser";
 import {SearchDataState} from "../../reducers/searchReducer";
@@ -86,6 +86,7 @@ const SearchComponent: React.FC = () => {
 
     const token = useSelector((state: RootState) => state.auth.token);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     // for validation
     const [limitError, setLimitError] = useState<string | null>(null);
@@ -184,6 +185,9 @@ const SearchComponent: React.FC = () => {
           intervalType: 'month',
           histogramTypes: ['totalDocuments', 'riskFactors']
         };
+        function sleep(ms: number): Promise<void> {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
 
         try {
             const response = await axios.post('https://gateway.scan-interfax.ru/api/v1/objectsearch/histograms',
@@ -223,7 +227,12 @@ const SearchComponent: React.FC = () => {
                                 },
                             }
                         );
+                        await sleep(1000);
                         console.log('Response for the IDs:', documentsResponse.data);
+                        // dispatch({
+                        //     type: 'FETCH_DOCUMENTS_SUCCESS',
+                        //     payload: documentsResponse.data
+                        // });
                     } catch (error) {
                         console.error('Error response:', response.data);
                     }

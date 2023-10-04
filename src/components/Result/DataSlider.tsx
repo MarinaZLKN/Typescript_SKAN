@@ -63,23 +63,23 @@ const DataSlider: React.FC<DataSliderProps> = ({ data }) => {
                 <div className="data-slider_right-part">
                     <div className="table">
                         <div className="table-tr">
-                          {dates.map(elem => {
+                          {dates.map((elem, i)  => {
                               return(
-                                  <div className="table-value">{elem}</div>
+                                  <div className="table-value" key={i}>{elem}</div>
                               )
                           })}
                       </div>
                       <div className="table-tr">
-                          {documents.map(doc => {
+                          {documents.map((doc, i) => {
                               return (
-                                  <div className="table-value">{doc}</div>
+                                  <div className="table-value" key={i}>{doc}</div>
                               )
                           })}
                       </div>
                           <div className="table-tr">
-                              {risks.map(risk => {
+                              {risks.map((risk, i) => {
                                   return (
-                                      <div className="table-value">{risk}</div>
+                                      <div className="table-value" key={i}>{risk}</div>
                                   )
                               })}
                           </div>
