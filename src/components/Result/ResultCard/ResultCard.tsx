@@ -4,11 +4,12 @@ import '../../../styles/ResultCard.css'
 
 
 interface ResultCardProps {
-  data: myDocument[] | null;
-}
-const ResultCard: React.FC<ResultCardProps> = ({ data }) => {
+  data?: myDocument[] | null;
+  title: string;
 
-    console.log('data in the right place :', data)
+}
+const ResultCard: React.FC<ResultCardProps> = ({ title }) => {
+
 
     return (
         <div className="result-card">
@@ -16,7 +17,7 @@ const ResultCard: React.FC<ResultCardProps> = ({ data }) => {
                 <label className="result-card_date"> date</label>
                 <label className="result-card_source"> source</label>
             </div>
-            <div className="result-card_title">Title</div>
+            <div className="result-card_title">{title}</div>
             <div className="result-card_news-type">type</div>
             <div className="result-card_pic">img</div>
             <div className="result-card_text">text</div>

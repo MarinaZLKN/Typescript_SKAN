@@ -1,12 +1,24 @@
 import React from "react";
 import {myDocument} from "../../../reducers/searchReducer";
+import ResultCard from "./ResultCard";
 
-interface ResultCardProps {
-  data: myDocument[] | null;
+interface ResultCardListProps {
+    data: myDocument[] | null;
 }
-const ResultCardList: React.FC<ResultCardProps> = ({ data }) => {
+
+
+const ResultCardList: React.FC<ResultCardListProps> = ({ data }) => {
+    console.log('result list: ', data)
     return(
-        <div></div>
+         <div className="result-card-list-wrapper">
+          {data?.map((card) => (
+            <ResultCard
+                 key={card.ok.id}
+                 title={card.ok.title}
+            />
+          )) ?? null
+          }
+        </div>
     )
 }
 export default  ResultCardList;

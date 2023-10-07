@@ -36,6 +36,7 @@ interface FetchDocumentsFailAction {
 
 export interface myDocument {
     ok: OkObject;
+
 }
 
 interface OkObject {
@@ -46,7 +47,7 @@ interface OkObject {
     url: string;
     source: Source;
     dedupClusterId: string;
-    title: TextMarkup;
+    title: string;
     content: TextMarkup;
     entities: Entities;
     attributes: Attributes;
