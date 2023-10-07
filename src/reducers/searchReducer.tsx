@@ -10,7 +10,7 @@ type DocumentItem = {
 interface SearchDataState {
     data: DataItem[] | null;
     documentData: DocumentItem[] | null;
-    documents: Document[] | null;
+    documents: myDocument[] | null;
     loading: boolean;
     error: null | string;
 }
@@ -26,7 +26,7 @@ interface FetchDataFailAction {
 }
 interface FetchDocumentsSuccessAction {
     type: 'FETCH_DOCUMENTS_SUCCESS';
-    payload: Document[];
+    payload: myDocument[];
 }
 
 interface FetchDocumentsFailAction {
@@ -34,7 +34,7 @@ interface FetchDocumentsFailAction {
     payload: string;
 }
 
-interface Document {
+export interface myDocument {
     ok: OkObject;
 }
 

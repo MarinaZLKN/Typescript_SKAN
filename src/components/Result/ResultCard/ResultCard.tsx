@@ -1,6 +1,14 @@
-import React, { FC } from 'react';
+import React from 'react';
+import type { myDocument } from '../../../reducers/searchReducer'
+import '../../../styles/ResultCard.css'
 
-const ResultCard: FC = () => {
+
+interface ResultCardProps {
+  data: myDocument[] | null;
+}
+const ResultCard: React.FC<ResultCardProps> = ({ data }) => {
+
+    console.log('data in the right place :', data)
 
     return (
         <div className="result-card">
@@ -13,6 +21,7 @@ const ResultCard: FC = () => {
             <div className="result-card_pic">img</div>
             <div className="result-card_text">text</div>
             <button className="result-card_btn">Читать в источнике</button>
+            <div className="result-words">words</div>
         </div>
     );
 }

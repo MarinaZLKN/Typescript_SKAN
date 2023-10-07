@@ -3,20 +3,14 @@ import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import '../../styles/ResultPage.scss';
 import StatisticComponent from "./StatisticComponent";
-import searchReducer from "../../reducers/searchReducer";
-import {RootState} from "../../types";
-import searchDataReducer from "../../reducers/searchReducer";
 import {RootReducerType} from "../../store";
-
-
-
+import ResultCardList from "./ResultCard/ResultCardList";
 
 const ResultPage: React.FC = () => {
     const location = useLocation();
     const responseData = location.state?.responseData;
     const documents = useSelector((state: RootReducerType) => state.searchData.documents);
 
-    //TODO extract data from state here and pass to component
 
     console.log('Passed data to resultPage: ', responseData);
     console.log('Passed documents to resultPage: ', documents);
@@ -36,6 +30,7 @@ const ResultPage: React.FC = () => {
                 </div>
                 <div className="statistics_copm">
                     <StatisticComponent data={responseData} />
+                    <ResultCardList data={documents}/>
                 </div>
             </div>
 
