@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 
 const ResultCard: FC = () => {
+
     return (
         <div className="result-card">
             <div className="result-card_header">

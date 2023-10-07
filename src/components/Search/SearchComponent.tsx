@@ -221,18 +221,19 @@ const SearchComponent: React.FC = () => {
                         const documentsResponse = await axios.post('https://gateway.scan-interfax.ru/api/v1/documents',
                             { ids: hundredIds },
                             {
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    Authorization: `Bearer ${token}`,
-                                },
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        Authorization: `Bearer ${token}`,
+                                    },
                             }
                         );
                         await sleep(1000);
                         console.log('Response for the IDs:', documentsResponse.data);
-                        // dispatch({
-                        //     type: 'FETCH_DOCUMENTS_SUCCESS',
-                        //     payload: documentsResponse.data
-                        // });
+                        //TODO add data to state
+                        dispatch({
+                            type: 'FETCH_DOCUMENTS_SUCCESS',
+                            payload: documentsResponse.data
+                        });
                     } catch (error) {
                         console.error('Error response:', response.data);
                     }

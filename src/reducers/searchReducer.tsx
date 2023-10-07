@@ -164,7 +164,7 @@ export const searchDataReducer = (state: SearchDataState = initialState, action:
         case "FETCH_DOCUMENTS_SUCCESS":
             return {
                 ...state,
-                documentData: action.payload.map(doc => ({ id: doc.ok.id })),
+                documents: action.payload,
                 loading: false,
                 error: null,
             };
