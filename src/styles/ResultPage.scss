@@ -35,10 +35,16 @@
 
 .stat-component {
     text-align: left;
-
-
     .data_slider{
-
     }
-
 }
+
+.result_card_positions{
+    display: flex;
+    flex-wrap: wrap;
+    .res-card{
+        flex: 1 0 48%;
+        margin: 1%;
+    }
+}
+

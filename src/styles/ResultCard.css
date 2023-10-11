@@ -20,6 +20,9 @@
   text-decoration: underline;
   cursor: pointer;
 }
+.result-card .result-card_header .result-card_source #res {
+  color: #949494;
+}
 .result-card .result-card_title {
   font-family: "Inter", sans-serif;
   font-style: normal;
@@ -37,12 +40,27 @@
   text-align: center;
   margin: 10px 0px;
 }
+.result-card .result-card_text {
+  color: #949494;
+}
 .result-card .result-card_btn {
   width: 223px;
   height: 47px;
+  margin-top: 10px;
   background: #7CE3E1;
   border-radius: 5px;
   border: none;
+  cursor: pointer;
+}
+.result-card .result-card_btn #res-btn {
+  color: black;
+  text-decoration: none !important;
+  cursor: pointer;
+}
+.result-card .result-words {
+  text-align: right;
+  margin-bottom: -10px;
+  color: #949494;
 }
 
 /*# sourceMappingURL=ResultCard.css.map */

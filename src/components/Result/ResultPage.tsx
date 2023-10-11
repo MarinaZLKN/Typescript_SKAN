@@ -30,7 +30,12 @@ const ResultPage: React.FC = () => {
                 </div>
                 <div className="statistics_copm">
                     <StatisticComponent data={responseData} />
-                    <ResultCardList data={documents}/>
+                    <div className="result_card_positions">
+                        <div className="res-card">
+                            <ResultCardList data={documents}/>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 

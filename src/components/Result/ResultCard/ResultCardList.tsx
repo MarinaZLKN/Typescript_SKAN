@@ -22,6 +22,7 @@ const ResultCardList: React.FC<ResultCardListProps> = ({ data }) => {
                  url={card.ok.url}
                  source={card.ok.source.name}
                  tag={card.ok.entities.companies[0].tags}
+                 wordCount={card.ok.attributes.wordCount}
             />
           )) ?? null
           }
