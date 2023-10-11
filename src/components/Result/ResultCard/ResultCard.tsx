@@ -50,7 +50,9 @@ const ResultCard: React.FC<ResultCardProps> = ({ title , content, date, url, sou
             </div>
             <div className="result-card_title">{title ?? "No title found"}</div>
             <div className="result-card_news-type">{tag}</div>
-            <div className="result-card_pic">img</div>
+            <div className="result-card_pic">
+                <img src="/sf.png"/>
+            </div>
             <div className="result-card_text">{limitedContent}</div>
             <button className="result-card_btn">
                 <a href={url}><label id="res-btn">Source link</label></a></button>

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Card from "./Card";
+import {useSelector} from "react-redux";
+import {RootState} from "../../Header/Header";
 
 interface CardData {
   id: number;
@@ -23,9 +25,17 @@ interface CardListProps {
 
 const CardList: React.FC<CardListProps> = ({ cardData }) => {
   const [selectedCardId, setSelectedCardId] = useState<number | null>(null);
+  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
 
+
+  //TODO probably need a better function for this
   const handleCardClick = (cardId: number) => {
-    setSelectedCardId(cardId);
+    if (isAuthenticated) {
+       setSelectedCardId(cardId);
+    } else {
+      return
+    }
+
   };
 
   return (

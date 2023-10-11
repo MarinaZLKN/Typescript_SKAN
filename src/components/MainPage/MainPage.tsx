@@ -3,9 +3,11 @@ import MainPageLogo from './MainPageLogo';
 import '../../styles/MainPage.css';
 import './Slider/Slider';
 import {Link} from "react-router-dom";
+import { useSelector } from 'react-redux';
 import Carousel from './Slider/Slider';
 import MainPageCenterLogoLogo from './MainPageCenterLogo';
 import CardList from './Card/CardList';
+import {RootState} from "../Header/Header";
 
 interface CardData {
   id: number;
@@ -25,6 +27,7 @@ interface CardData {
 
 interface Props {}
 const MainPage: React.FC<Props> = (props) => {
+  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
 
   const cardData: CardData[] = [
     {
@@ -84,12 +87,12 @@ const MainPage: React.FC<Props> = (props) => {
           <div className="under-text">
             <span>Comprehensive analysis of publications, receiving data in PDF format by email.</span>
           </div>
-          <div className="btn_main-page">
+          {isAuthenticated ?
+               <div className="btn_main-page">
             <Link to="/search" className="btn">
               <button className="btn">Request data</button>
             </Link>
-
-          </div>
+          </div>  : null}
         </div>
         <div className="picture">
           <MainPageLogo alt="Main page logo" />
