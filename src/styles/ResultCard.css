@@ -2,7 +2,7 @@
   margin: 40px 40px;
   padding: 20px 20px;
   width: 600px;
-  height: 694px;
+  height: 604px;
   background: #FFFFFF;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
@@ -39,23 +39,39 @@
   font-size: 11px;
   text-align: center;
   margin: 10px 0px;
+  line-height: 20px;
 }
 .result-card .result-card_text {
   color: #949494;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  width: 600px;
 }
 .result-card .result-card_btn {
   width: 223px;
   height: 47px;
   margin-top: 10px;
-  background: #7CE3E1;
+  background-color: #7CE3E1;
   border-radius: 5px;
   border: none;
   cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+}
+.result-card .result-card_btn .result-card_btn:hover {
+  background-color: #328583;
+}
+.result-card .result-card_btn a {
+  text-decoration: none;
 }
 .result-card .result-card_btn #res-btn {
   color: black;
-  text-decoration: none !important;
   cursor: pointer;
+  display: block;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  line-height: 17px;
 }
 .result-card .result-words {
   text-align: right;

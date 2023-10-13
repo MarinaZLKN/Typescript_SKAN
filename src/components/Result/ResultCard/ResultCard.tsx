@@ -1,15 +1,17 @@
 import React from 'react';
 import type { myDocument } from '../../../reducers/searchReducer'
 import '../../../styles/ResultCard.css'
+import he from 'he';
 
+const decodeHtmlEntities = (str: string) => {
+    return he.decode(str);
+};
 
-const parseXML = (xmlString: string) => {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(xmlString, 'application/xml');
-    return doc.documentElement.textContent || '';
-    };
+const stripHtmlTags = (str: string) => {
+    return str.replace(/<\/?[^>]+(>|$)/g, "");
+};
 
-const limitTextLength = (text: string, limit = 400) => {
+const limitTextLength = (text: string, limit = 500) => {
     return text.length > limit ? text.slice(0, limit) + '...' : text;
 };
 interface ResultCardProps {
@@ -19,8 +21,14 @@ interface ResultCardProps {
   date: string;
   url: string;
   source: string;
-  tag: string[];
+  tag: {
+    isAnnouncement: boolean;
+    isDigest: boolean;
+    isTechNews: boolean;
+    [key: string]: any;
+  };
   wordCount: number;
+
 
 }
 const ResultCard: React.FC<ResultCardProps> = ({ title , content, date, url, source, tag, wordCount}) => {
@@ -34,10 +42,15 @@ const ResultCard: React.FC<ResultCardProps> = ({ title , content, date, url, sou
     }
 
     const formattedDate = formatDate(date);
+    const cleanContent = limitTextLength(stripHtmlTags(decodeHtmlEntities(content)));
+    const limitedContent = limitTextLength(cleanContent, 550);
 
-
-    const parsedContent = parseXML(content);
-    const limitedContent = limitTextLength(parsedContent, 450);
+     const getTagText = () => {
+        if (tag.isAnnouncement) return 'Announcement';
+        if (tag.isDigest) return 'Digest';
+        if (tag.isTechNews) return 'Tech News';
+        return 'Tech News';
+    };
 
 
 
@@ -49,13 +62,13 @@ const ResultCard: React.FC<ResultCardProps> = ({ title , content, date, url, sou
                     <a href={url} id="res">{source}</a> </label>
             </div>
             <div className="result-card_title">{title ?? "No title found"}</div>
-            <div className="result-card_news-type">{tag}</div>
+            <div className="result-card_news-type">{getTagText()}</div>
             <div className="result-card_pic">
                 <img src="/sf.png"/>
             </div>
             <div className="result-card_text">{limitedContent}</div>
             <button className="result-card_btn">
-                <a href={url}><label id="res-btn">Source link</label></a></button>
+                <a href={url}><p id="res-btn">Source link</p></a></button>
             <div className="result-words">{wordCount} words</div>
         </div>
     );

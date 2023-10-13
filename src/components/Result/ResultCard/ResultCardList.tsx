@@ -21,7 +21,7 @@ const ResultCardList: React.FC<ResultCardListProps> = ({ data }) => {
                  date={card.ok.issueDate}
                  url={card.ok.url}
                  source={card.ok.source.name}
-                 tag={card.ok.entities.companies[0].tags}
+                 tag={card.ok.attributes}
                  wordCount={card.ok.attributes.wordCount}
             />
           )) ?? null
