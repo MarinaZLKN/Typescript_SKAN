@@ -1,5 +1,5 @@
 .result-content{
-    padding: 20px 40px;
+    padding: 20px 20px;
     .result-static {
         display: flex;
     }
@@ -38,13 +38,3 @@
     .data_slider{
     }
 }
-
-.result_card_positions{
-    display: flex;
-    flex-wrap: wrap;
-    .res-card{
-        flex: 1 0 48%;
-        margin: 1%;
-    }
-}
-

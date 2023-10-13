@@ -1,7 +1,7 @@
 .result-card {
   margin: 40px 40px;
   padding: 20px 20px;
-  width: 600px;
+  width: 590px;
   height: 604px;
   background: #FFFFFF;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
@@ -57,9 +57,7 @@
   cursor: pointer;
   font-family: "Inter", sans-serif;
   font-size: 13px;
-}
-.result-card .result-card_btn .result-card_btn:hover {
-  background-color: #328583;
+  transition: background-color 0.3s, transform 0.3s;
 }
 .result-card .result-card_btn a {
   text-decoration: none;
@@ -77,6 +75,16 @@
   text-align: right;
   margin-bottom: -10px;
   color: #949494;
+}
+
+.result-card_btn:hover {
+  background-color: #4ed3d0;
+}
+
+.result-card-list-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0%;
 }
 
 /*# sourceMappingURL=ResultCard.css.map */

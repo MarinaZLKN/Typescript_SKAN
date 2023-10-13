@@ -1,5 +1,5 @@
 .result-content {
-  padding: 20px 40px;
+  padding: 20px 20px;
 }
 .result-content .result-static {
   display: flex;
@@ -35,14 +35,6 @@
 
 .stat-component {
   text-align: left;
-}
-.result_card_positions {
-  display: flex;
-  flex-wrap: wrap;
-}
-.result_card_positions .res-card {
-  flex: 1 0 48%;
-  margin: 1%;
 }
 
 /*# sourceMappingURL=ResultPage.css.map */
