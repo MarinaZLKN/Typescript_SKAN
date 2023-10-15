@@ -87,4 +87,31 @@
   gap: 0%;
 }
 
+.load-more-btn {
+  width: 335px;
+  height: 59px;
+  background-color: #5970FF;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f0f0f0;
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  text-decoration: none !important;
+}
+
+.load-more-btn:hover {
+  background-color: #7594f5;
+}
+
+.lazy_loading-btn {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  left: 350px;
+}
+
 /*# sourceMappingURL=ResultCard.css.map */
