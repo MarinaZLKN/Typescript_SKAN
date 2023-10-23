@@ -25,26 +25,26 @@ const ResultCardList: React.FC<ResultCardListProps> = ({ data }) => {
     }, [data, next]);
     return(
          <div className="result-card-list-wrapper">
-          {visibleData.map((card, index) => (
-                <ResultCard
-                    key={index}
-                    title={card.ok.title.text}
-                    content={card.ok.content.markup}
-                    date={card.ok.issueDate}
-                    url={card.ok.url}
-                    source={card.ok.source.name}
-                    tag={card.ok.attributes}
-                    wordCount={card.ok.attributes.wordCount}
-                />
-            ))}
-            {next < (data?.length ?? 0) && (
-                <div className="lazy_loading-btn">
-                     <button onClick={handleLoadMore} className="load-more-btn">
-                        Load More
-                    </button>
-                </div>
+              {visibleData.map((card, index) => (
+                    <ResultCard
+                        key={index}
+                        title={card.ok.title.text}
+                        content={card.ok.content.markup}
+                        date={card.ok.issueDate}
+                        url={card.ok.url}
+                        source={card.ok.source.name}
+                        tag={card.ok.attributes}
+                        wordCount={card.ok.attributes.wordCount}
+                    />
+                ))}
+                {next < (data?.length ?? 0) && (
+                    <div className="lazy_loading-btn">
+                         <button onClick={handleLoadMore} className="load-more-btn">
+                            Load More
+                        </button>
+                    </div>
 
-            )}
+                )}
         </div>
     )
 }

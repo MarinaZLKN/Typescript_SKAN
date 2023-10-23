@@ -229,8 +229,6 @@ const SearchComponent: React.FC = () => {
                             }
                         );
                         await sleep(1000);
-                        console.log('Response for the IDs:', documentsResponse.data);
-                        //TODO add data to state
                         dispatch({
                             type: 'FETCH_DOCUMENTS_SUCCESS',
                             payload: documentsResponse.data

@@ -36,5 +36,9 @@
 .stat-component {
   text-align: left;
 }
+#documents {
+  text-align: left;
+  margin-top: 50px;
+}
 
 /*# sourceMappingURL=ResultPage.css.map */

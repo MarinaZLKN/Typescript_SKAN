@@ -31,6 +31,7 @@ const ResultPage: React.FC = () => {
                 <div className="statistics_copm">
                     <StatisticComponent data={responseData} />
                     <div className="result_card_positions">
+                        <div id="documents" className="result-static_main-title">List of documents</div>
                         <div className="res-card">
                             <ResultCardList data={documents}/>
                         </div>

@@ -16,7 +16,6 @@ interface StatisticComponentProps {
 
 const StatisticComponent: React.FC<StatisticComponentProps> = ({ data }) => {
 
-    console.log('StatisticComponent data: ', data)
      if (!data || !data.data || data.data.length === 0) {
         return (
           <div className="stat-component">

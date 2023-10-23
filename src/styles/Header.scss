@@ -185,3 +185,18 @@
 }
 
 
+@media (max-width: 414px) {
+    .header {
+        padding: 0px 10px;
+    }
+
+    .header_menu {
+        display: none;
+    }
+
+    .header_side-menu {
+        padding-left: 10px;
+        margin-right: 10px;
+    }
+}
+
