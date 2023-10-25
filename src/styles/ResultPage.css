@@ -41,4 +41,27 @@
   margin-top: 50px;
 }
 
+@media (max-width: 414px) {
+  .result-content {
+    padding: 20px 20px;
+  }
+  .result-content .result-static {
+    display: flex;
+    flex-direction: column;
+  }
+  .result-static_main-title {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 25px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #000000;
+  }
+  .result-pic img {
+    width: 400px;
+  }
+}
+
 /*# sourceMappingURL=ResultPage.css.map */

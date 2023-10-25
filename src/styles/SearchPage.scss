@@ -243,6 +243,7 @@
         position: relative;
         top: 460px;
         right: 342px;
+        width: 270px;
     }
     #start-date {
         width: 245px;
@@ -250,7 +251,11 @@
     #end-date {
         width: 245px;
     }
-    .search-button{
-        width: 270px;
+
+    #bottom-p{
+        position: relative;
+        top: 450px;
+        right: 342px;
+
     }
 }

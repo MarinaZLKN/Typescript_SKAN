@@ -114,4 +114,38 @@
   left: 350px;
 }
 
+@media (max-width: 414px) {
+  .result-card-list-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  .result-card {
+    margin: 20px 0px;
+    width: 330px;
+    height: 100%;
+  }
+  .result-card_pic img {
+    width: 330px;
+  }
+  .result-card_text {
+    width: 330px !important;
+  }
+  .result-card_title {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px !important;
+    line-height: 20px !important;
+  }
+  .lazy_loading-btn {
+    display: flex;
+    justify-content: left;
+    position: relative;
+    left: 0px;
+  }
+  .load-more-btn {
+    width: 370px;
+  }
+}
+
 /*# sourceMappingURL=ResultCard.css.map */
