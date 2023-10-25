@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/MainPage.css';
 
 interface MainPageCenterLogoProps {
   alt: string;
@@ -6,7 +7,7 @@ interface MainPageCenterLogoProps {
 
 const MainPageCenterLogoLogo: React.FC<MainPageCenterLogoProps> = ({ alt }) => {
   return (
-    <div className="logo">
+    <div className="logo-mid">
       <img src="/Group.png" alt={alt} />
     </div>
   );

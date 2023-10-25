@@ -9,10 +9,6 @@
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  .picture {
-    flex: 1;
-  }
-
 
   .info-box {
     padding-top: 40px;
@@ -27,6 +23,15 @@
       margin-bottom: 20px;
     }
   }
+}
+.logo-main{
+  width: 629px;
+  height: 593px;
+}
+
+.logo-mid{
+  width: 1307px;
+  height: 576px;
 }
 
 .btn {
@@ -63,6 +68,8 @@
     .middle-page_center-pic {
         padding-top: 30px;
         padding-left: 50px;
+        width: 1307px;
+        height: 576px;
     }
 
 }
@@ -90,18 +97,55 @@
       padding-top: 40px;
       text-align: left;
 
-      .main-text{
+        .main-text{
+          font-size: 13px;
+          font-weight: 800;
+          text-transform: uppercase;
+        }
+        .under-text{
+          margin-bottom: 20px;
+        }
+    }
+
+  }
+  .middle-page-content{
+    padding: 20px 0px;
+    .title{
+        font-family: 'Inter', sans-serif;
         font-size: 13px;
         font-weight: 800;
         text-transform: uppercase;
-      }
-      .under-text{
-        margin-bottom: 20px;
-      }
+    }
+    .middle-page_center-pic {
+      max-width: 20%;
+    }
   }
-    .picture {
-
+  .down-page-content {
+    text-align: left;
+    padding: 20px 0px;
+    .down-title{
+        font-family: 'Inter', sans-serif;
+        font-size: 13px;
+        font-weight: 800;
+        text-transform: uppercase;
     }
 }
+  .picture{
+    height: 350px;
+  }
+  .logo-main img{
+    width: 60%;
+    height: 60%;
+  }
+
+  .middle-page_center-pic{
+    position: relative;
+    right: 65px;
+    top: 10px;
+  }
+  .logo-mid img{
+    width: 75%;
+    height: 80%;
+  }
 
 }

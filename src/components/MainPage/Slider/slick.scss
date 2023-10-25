@@ -116,3 +116,14 @@
 .slick-arrow.slick-hidden {
     display: none;
 }
+.carousel-item img{
+    width: 440px;
+    height: 256px;
+}
+
+@media (max-width: 414px) {
+    .carousel-item img{
+        width: 380px;
+        height: 216px;
+    }
+}

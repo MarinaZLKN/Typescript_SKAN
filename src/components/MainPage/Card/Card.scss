@@ -214,3 +214,60 @@ li::before {
     gap: 30px;
 
 }
+@media (max-width: 414px) {
+    .card-list-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .tariff-card{
+        box-sizing: border-box;
+        width: 350px;
+        height: 560px;
+        background: #FFFFFF;
+        border: 2px;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+    }
+    .card-upper-side {
+        width: 350px;
+        height: 122px;
+
+        color: #FFB64F;
+        border-radius: 10px 10px 0px 0px;
+    }
+
+    .card-btn {
+        width: 310px;
+        height: 59px;
+    }
+
+    .card-logo {
+        position: absolute;
+        width: 72.24px;
+        height: 73.15px;
+        left: 245.24px;
+        top: 20px;
+        z-index: 2;
+        transform: matrix(1, 0, 0, 1, 0, 0);
+    }
+
+    .card-prices_title-info {
+        font-family: 'Inter', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+        letter-spacing: 0.01em;
+
+        color: #000000;
+    }
+    .additional-btn{
+        position: absolute;
+        top:130px;
+        left: 200px;
+        width: 134px;
+        height: 24px;
+
+    }
+}

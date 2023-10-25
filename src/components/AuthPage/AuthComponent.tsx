@@ -32,8 +32,7 @@ const inputStyles = {
         border: '1px solid #C7C7C7',
         boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.05)',
         borderRadius: '5px',
-        width: '379px',
-        height: '40px'
+
     },
     invalid: {
         border: '2px solid red',
@@ -41,8 +40,7 @@ const inputStyles = {
         background: '#FFFFFF',
         boxShadow: '0px 0px 10px rgba(255, 69, 69, 0.59)',
         borderRadius: '5px',
-        width: '379px',
-        height: '40px',
+
     }
 } as const;
 
@@ -114,6 +112,7 @@ const AuthComponent: React.FC = () => {
                                 <form className="auth-center-side">
                                     <div className="auth-input-title"> Username or phone number:</div>
                                     <input
+                                        id="auth-input"
                                         style={error ? inputStyles.invalid : inputStyles.valid}
                                         type="text"
                                         value={login}
@@ -123,6 +122,7 @@ const AuthComponent: React.FC = () => {
                                         }}/>
                                     <div className="auth-input-title"> Password:</div>
                                     <input
+                                         id="auth-input"
                                          style={error ? inputStyles.invalid : inputStyles.valid}
                                          type="password"
                                          value={password}
