@@ -49,7 +49,7 @@
   text-align: left;
 }
 
-.search-checkbox-button {
+.search-checkbox {
   margin-top: 29px;
   text-align: left;
 }
@@ -191,6 +191,63 @@
   position: absolute;
   top: 160px;
   right: 60px;
+}
+
+@media (max-width: 414px) {
+  .search-page-content {
+    padding: 20px 20px;
+  }
+  .search-text {
+    width: 330px;
+  }
+  .search-title {
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 25px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-align: left;
+    color: #000000;
+  }
+  .search-pictures {
+    position: relative;
+  }
+  .search-pictures .pic1 {
+    display: none;
+  }
+  .search-pictures .pic2 img {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: 65px;
+  }
+  .search-pictures .pic3 {
+    display: none;
+  }
+  .search-component-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 360px;
+    height: 670px;
+  }
+  .search-checkbox {
+    display: none;
+  }
+  .search-button {
+    position: relative;
+    top: 460px;
+    right: 342px;
+  }
+  #start-date {
+    width: 245px;
+  }
+  #end-date {
+    width: 245px;
+  }
+  .search-button {
+    width: 270px;
+  }
 }
 
 /*# sourceMappingURL=SearchPage.css.map */
