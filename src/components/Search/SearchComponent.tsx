@@ -228,7 +228,7 @@ const SearchComponent: React.FC = () => {
                                     },
                             }
                         );
-                        await sleep(1000);
+                        await sleep(2000);
                         dispatch({
                             type: 'FETCH_DOCUMENTS_SUCCESS',
                             payload: documentsResponse.data
