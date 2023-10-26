@@ -1,0 +1,29 @@
+.table {
+    display: flex;
+    align-items: center;
+}
+
+.table-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+}
+
+.table-tr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .table-value {
+        font-size: 14px;
+        width: 100%;
+    }
+}
+
+.separator_stat {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 18px;
+    padding-top: 15px;
+}

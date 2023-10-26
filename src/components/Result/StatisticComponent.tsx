@@ -30,7 +30,7 @@ const StatisticComponent: React.FC<StatisticComponentProps> = ({ data }) => {
             <div className="result-static_main-title">Summary</div>
             <div className="result-static_span"> {data.data[0].data.length} options found</div>
             <div className="data_slider">
-                {data && data.data && <DataSlider data={{ data: data.data }} />}
+                {/*{data && data.data && <DataSlider data={{ data: data.data }} />}*/}
                 {data && data.data && <DataSlider2 items={data.data} />}
             </div>
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import SliderCard from './SliderCard';
+import '../../../styles/DataSlider.css';
 
 export interface DataElement {
   histogramType: string;
