@@ -24,7 +24,7 @@ const StatisticComponent: React.FC<StatisticComponentProps> = ({ data }) => {
             <div className="result-static_span">No data available</div>
           </div>);
     }
-
+    //TODO delete old DataSlider and css for it
     return (
         <div className="stat-component">
             <div className="result-static_main-title">Summary</div>

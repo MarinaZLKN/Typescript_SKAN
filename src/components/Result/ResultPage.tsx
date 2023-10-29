@@ -6,6 +6,8 @@ import StatisticComponent from "./StatisticComponent";
 import {RootReducerType} from "../../store";
 import ResultCardList from "./ResultCard/ResultCardList";
 
+
+
 const ResultPage: React.FC = () => {
     const location = useLocation();
     const responseData = location.state?.responseData;

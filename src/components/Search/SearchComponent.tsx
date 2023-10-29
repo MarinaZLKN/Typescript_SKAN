@@ -7,7 +7,7 @@ import {AuthState} from "../../reducers/reduser";
 import {SearchDataState} from "../../reducers/searchReducer";
 import '../../styles/SearchPage.scss';
 
-const inn = '9702009530'; //SkillFactory inn
+const inn = '9702009530 6449013711'; //SkillFactory and another inn for small response
 export interface RootState {
   auth: AuthState;
   searchData: SearchDataState;

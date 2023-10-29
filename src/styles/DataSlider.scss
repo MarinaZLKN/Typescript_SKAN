@@ -89,5 +89,31 @@ table{
 
 
 @media (max-width: 414px) {
+    .data-slider_cards-row > :nth-child(n+2) {
+        display: none;
+      }
+    .slider-container {
+        display: flex;
+        align-items: center;
+        .data-slider_box{
+            width: 100px;
+            height: 140px;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    .data-slider_left-part{
+        width: 100%;
+        height: 158px;
+        background: #029491;
+        border-radius: 7px 0px 0px 0px;
+        .data-slider_titles{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    }
 
 }
