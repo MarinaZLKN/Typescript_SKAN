@@ -24,6 +24,7 @@ const Header: React.FC = () => {
   const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
   const token = useSelector((state: RootState) => state.auth.token);
   const [accountInfo, setAccountInfo] = useState<AccountInfo | null>(null);
+  const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
 
   useEffect(() => {
     if (isAuthenticated && token) {
@@ -42,48 +43,57 @@ const Header: React.FC = () => {
 
 
     return (
-        <div className="header">
-           <div className="logo">
-               <Logo  alt="Company Logo" />
-           </div>
-            <div className="header_menu">
-                <Link to="/" className="menu">
-                    <label className="menu"> Main page </label>
-                </Link>
-                <label className="menu"> Tariff </label>
-                <label className="menu"> FAQ </label>
-            </div>
-            {isAuthenticated ? (
-                <div className="side-menu-auth">
-                    {accountInfo && (
-                        <div className="tariff-info-auth">
-                            <p className="tariff-used-number"><span className="tariff-used">Company used</span><span className="tariff-number">{accountInfo.eventFiltersInfo.usedCompanyCount}</span></p>
-                            <p className="tariff-limit-number"><span className="tariff-limit">Company limit</span> <span className="tariff-number">{accountInfo.eventFiltersInfo.companyLimit}</span> </p>
-                        </div>
-                    )}
-
-                    <div className="account-info">
-                      <div className="text-container">
-                        <p className="account-name">Alex А.</p>
-                        <div className="logout-btn">
-                          <LogoutButton />
-                        </div>
-                      </div>
-                      <div className="account-pic">
-                        <img src="/account-pic.png" className="acc-pic" />
-                      </div>
-                    </div>
+        <>
+            <div className={`header ${isMenuOpen ? 'menu-open' : ''}`}>
+                <div className="logo">
+                    <Logo alt="Company Logo" />
                 </div>
-            ) : (
-            <div className="header_side-menu">
-                <label className="signup">Sign up</label>
-                    <div className="separator"></div>
-                <Link to="/auth">
-                    <button className="header-btn">Sign in</button>
-                </Link>
-            </div>
+                {isAuthenticated ? (
+                    <div className="side-menu-auth">
+                        {accountInfo && (
+                            <div className="tariff-info-auth">
+                                <p className="tariff-used-number"><span className="tariff-used">Company used</span><span className="tariff-number">{accountInfo.eventFiltersInfo.usedCompanyCount}</span></p>
+                                <p className="tariff-limit-number"><span className="tariff-limit">Company limit</span> <span className="tariff-number">{accountInfo.eventFiltersInfo.companyLimit}</span> </p>
+                            </div>
+                        )}
+                        <div className="burger-menu" onClick={() => setMenuOpen(!isMenuOpen)}>
+                            &#9776;
+                        </div>
+                    </div>
+                ) : (
+                    <div className="header_side-menu">
+                        <label className="signup">Sign up</label>
+                        <div className="separator"></div>
+                        <Link to="/auth">
+                            <button className="header-btn">Sign in</button>
+                        </Link>
+                    </div>
                 )}
-        </div>
+            </div>
+
+            <div className={`sidebar ${isMenuOpen ? 'open' : ''}`}>
+                <div className="header_menu">
+                    <Link to="/" className="menu">
+                        <label className="menu"> Main page </label>
+                    </Link>
+                    <label className="menu"> Tariff </label>
+                    <label className="menu"> FAQ </label>
+                </div>
+                {isAuthenticated && (
+                    <>
+                        <div className="text-container">
+                            <p className="account-name">Alex А.</p>
+                            <div className="logout-btn">
+                                <LogoutButton />
+                            </div>
+                        </div>
+                        <div className="account-pic">
+                            <img src="/account-pic.png" className="acc-pic" alt="Account" />
+                        </div>
+                    </>
+                )}
+            </div>
+        </>
     );
 }
 

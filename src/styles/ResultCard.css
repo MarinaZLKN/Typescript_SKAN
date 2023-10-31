@@ -58,6 +58,8 @@
   font-family: "Inter", sans-serif;
   font-size: 13px;
   transition: background-color 0.3s, transform 0.3s;
+  position: relative;
+  top: 20px;
 }
 .result-card .result-card_btn a {
   text-decoration: none;
@@ -128,7 +130,7 @@
     width: 330px;
   }
   .result-card_text {
-    width: 330px !important;
+    width: 300px !important;
   }
   .result-card_title {
     font-family: "Inter", sans-serif;
