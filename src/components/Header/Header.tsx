@@ -73,7 +73,7 @@ const Header: React.FC = () => {
 
             <div className={`sidebar ${isMenuOpen ? 'open' : ''}`}>
                 <div className="header_menu">
-                    <Link to="/" className="menu">
+                    <Link to="/" className="menu" onClick={() => setMenuOpen(false)}>
                         <label className="menu"> Main page </label>
                     </Link>
                     <label className="menu"> Tariff </label>
@@ -83,7 +83,7 @@ const Header: React.FC = () => {
                     <>
                         <div className="text-container">
                             <p className="account-name">Alex А.</p>
-                            <div className="logout-btn">
+                            <div className="logout-btn" onClick={() => setMenuOpen(false)}>
                                 <LogoutButton />
                             </div>
                         </div>

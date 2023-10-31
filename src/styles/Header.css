@@ -219,7 +219,7 @@
   .header {
     padding: 0px 10px;
   }
-  .header_menu, .account-info, .account-pic {
+  .account-pic {
     display: none;
   }
   .header_side-menu {
@@ -230,9 +230,19 @@
     padding-left: 10px;
     margin-right: 10px;
   }
-  .menu-open .header_menu,
   .menu-open .account-info {
     display: block;
+  }
+  .menu-open + .sidebar .header_menu {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  .menu-open + .sidebar .header_menu .menu {
+    font-size: 14px;
+    display: block;
+    width: 100%;
   }
   .burger-menu {
     display: block;
