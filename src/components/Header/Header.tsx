@@ -48,6 +48,25 @@ const Header: React.FC = () => {
                 <div className="logo">
                     <Logo alt="Company Logo" />
                 </div>
+                <div className="header_menu">
+                        <Link to="/" className="menu" onClick={() => setMenuOpen(false)}>
+                            <label className="menu"> Main page </label>
+                        </Link>
+                        <label className="menu"> Tariff </label>
+                        <label className="menu"> FAQ </label>
+                    </div>
+                 <div className={`sidebar ${isMenuOpen ? 'open' : ''}`}>
+                     <div className="header_menu">
+                        <Link to="/" className="menu" onClick={() => setMenuOpen(false)}>
+                            <label className="menu"> Main page </label>
+                        </Link>
+                        <label className="menu"> Tariff </label>
+                        <label className="menu"> FAQ </label>
+                    </div>
+                     <div className="logout-btn" id="sidebar-btn" onClick={() => setMenuOpen(false)}>
+                                <LogoutButton />
+                            </div>
+                 </div>
                 {isAuthenticated ? (
                     <div className="side-menu-auth">
                         {accountInfo && (
@@ -69,18 +88,9 @@ const Header: React.FC = () => {
                         </Link>
                     </div>
                 )}
-            </div>
 
-            <div className={`sidebar ${isMenuOpen ? 'open' : ''}`}>
-                <div className="header_menu">
-                    <Link to="/" className="menu" onClick={() => setMenuOpen(false)}>
-                        <label className="menu"> Main page </label>
-                    </Link>
-                    <label className="menu"> Tariff </label>
-                    <label className="menu"> FAQ </label>
-                </div>
                 {isAuthenticated && (
-                    <>
+                    <div className="account-info">
                         <div className="text-container">
                             <p className="account-name">Alex А.</p>
                             <div className="logout-btn" onClick={() => setMenuOpen(false)}>
@@ -90,7 +100,7 @@ const Header: React.FC = () => {
                         <div className="account-pic">
                             <img src="/account-pic.png" className="acc-pic" alt="Account" />
                         </div>
-                    </>
+                    </div>
                 )}
             </div>
         </>
